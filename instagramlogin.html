@@ -1,0 +1,457 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Login</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            background: #09090f;
+            color: white;
+            position: relative;
+            padding: 30px 15px;
+        }
+
+
+        .blob {
+            position: fixed;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.55;
+            z-index: -2;
+            animation: moveBlob 9s ease-in-out infinite alternate;
+        }
+
+        .blob.one {
+            background: #833ab4;
+            top: -100px;
+            left: -100px;
+        }
+
+        .blob.two {
+            background: #fd1d1d;
+            bottom: -120px;
+            right: -80px;
+            animation-delay: 2s;
+        }
+
+        .blob.three {
+            background: #fcb045;
+            width: 200px;
+            height: 200px;
+            top: 40%;
+            right: 10%;
+            opacity: 0.25;
+            animation-delay: 4s;
+        }
+
+        @keyframes moveBlob {
+            from {
+                transform: translate(0, 0) scale(1);
+            }
+            to {
+                transform: translate(70px, -50px) scale(1.2);
+            }
+        }
+
+
+        .floating {
+            position: fixed;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.04);
+            backdrop-filter: blur(5px);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        .circle1 {
+            width: 75px;
+            height: 75px;
+            top: 15%;
+            left: 12%;
+        }
+
+        .circle2 {
+            width: 110px;
+            height: 110px;
+            bottom: 12%;
+            left: 20%;
+            animation-delay: 1s;
+        }
+
+        .circle3 {
+            width: 60px;
+            height: 60px;
+            top: 20%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .circle4 {
+            width: 90px;
+            height: 90px;
+            bottom: 15%;
+            right: 18%;
+            animation-delay: 3s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-30px) rotate(15deg);
+            }
+        }
+
+
+        .container {
+            width: 100%;
+            max-width: 390px;
+            animation: appear 1s ease forwards;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(35px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        .login-card {
+            width: 100%;
+            padding: 35px 30px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 22px;
+            background: rgba(255,255,255,0.07);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+        }
+
+
+        .logo {
+            font-size: 36px;
+            font-weight: 600;
+            letter-spacing: -2px;
+            margin-bottom: 8px;
+            background: linear-gradient(
+                45deg,
+                #feda75,
+                #fa7e1e,
+                #d62976,
+                #962fbf,
+                #4f5bd5
+            );
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .subtitle {
+            color: #c3c3d0;
+            font-size: 12px;
+            margin-bottom: 28px;
+        }
+
+
+        .input-box {
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 14px 15px;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 10px;
+            outline: none;
+            background: rgba(0,0,0,0.2);
+            color: white;
+            font-size: 12px;
+            transition: 0.3s ease;
+        }
+
+        .input-box input::placeholder {
+            color: #aaaab8;
+        }
+
+        .input-box input:focus {
+            border-color: #c13584;
+            box-shadow: 0 0 12px rgba(193,53,132,0.2);
+        }
+
+
+        .login-btn {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            padding: 13px;
+            margin-top: 8px;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            background: linear-gradient(
+                90deg,
+                #833ab4,
+                #c13584,
+                #fd1d1d,
+                #fcb045
+            );
+            background-size: 250% 100%;
+            transition: 0.3s ease;
+            animation: gradientMove 4s linear infinite;
+        }
+
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .login-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(193,53,132,0.4);
+        }
+
+        .login-btn:active {
+            transform: scale(0.97);
+        }
+
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 25px 0;
+            color: #aaaab8;
+            font-size: 11px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: rgba(255,255,255,0.2);
+        }
+
+        .facebook {
+            display: inline-block;
+            color: #8bb7ff;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .facebook:hover {
+            color: white;
+            transform: scale(1.04);
+        }
+
+        .forgot {
+            display: block;
+            margin-top: 18px;
+            color: #c5c5d3;
+            text-decoration: none;
+            font-size: 11px;
+        }
+
+        .forgot:hover {
+            color: white;
+        }
+
+
+        .signup-card {
+            margin-top: 18px;
+            padding: 18px 10px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 15px;
+            background: rgba(255,255,255,0.04);
+            font-size: 12px;
+            color: #c5c5d3;
+        }
+
+        .signup-card a {
+            color: #ff8bc2;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .signup-card a:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 10px;
+            color: #89899b;
+        }
+
+
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 15px;
+            }
+
+            .container {
+                max-width: 360px;
+            }
+
+            .login-card {
+                padding: 30px 22px;
+            }
+
+            .logo {
+                font-size: 32px;
+            }
+
+            .circle1 {
+                left: -25px;
+            }
+
+            .circle2 {
+                left: -35px;
+                width: 70px;
+                height: 70px;
+            }
+
+            .circle3 {
+                right: -15px;
+            }
+
+            .circle4 {
+                right: -25px;
+                width: 65px;
+                height: 65px;
+            }
+
+            .blob {
+                opacity: 0.4;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    
+    <div class="blob one"></div>
+    <div class="blob two"></div>
+    <div class="blob three"></div>
+
+    <div class="floating circle1"></div>
+    <div class="floating circle2"></div>
+    <div class="floating circle3"></div>
+    <div class="floating circle4"></div>
+
+
+    <main class="container">
+
+        <section class="login-card">
+
+            <h1 class="logo">Instagram</h1>
+
+            <p class="subtitle">
+                Share your moments. Connect with everyone.
+            </p>
+
+            <form id="loginForm">
+
+                <div class="input-box">
+                    <input
+                        type="text"
+                        id="username"
+                        placeholder="Username, email or phone"
+                        autocomplete="username"
+                        required
+                    >
+                </div>
+
+                <div class="input-box">
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Password"
+                        autocomplete="current-password"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="login-btn">
+                    Log In
+                </button>
+
+            </form>
+
+            <div class="divider">OR</div>
+
+            <a href="https://www.facebook.com/" class="facebook">
+                Log in with Facebook
+            </a>
+
+            <a href="https://www.instagram.com/accounts/password/reset/"
+               class="forgot">
+                Forgot password?
+            </a>
+
+        </section>
+
+        <section class="signup-card">
+            Don't have an account?
+            <a href="https://www.instagram.com/accounts/emailsignup/">
+                Sign up
+            </a>
+        </section>
+
+        <footer class="footer">
+            Instagram UI Concept • Created with HTML & CSS
+        </footer>
+
+    </main>
+
+</body>
+</html>
